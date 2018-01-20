@@ -1,6 +1,6 @@
 # Kotmi
 
-### Migration tool for kotlin.
+Migration tool for Kotlin.
 
 ## Sample
 
