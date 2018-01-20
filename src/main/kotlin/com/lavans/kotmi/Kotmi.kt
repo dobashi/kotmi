@@ -27,7 +27,7 @@ object Kotmi {
         val currentVersion: String? = transactionWithLog {
             current(id)
         }
-        return migrations.filter{ it.version > currentVersion ?: "" }.map {
+        return migrations.filter { it.version > currentVersion ?: "" }.map {
             transactionWithLog {
                 it.function()
                 updateOrInsert(id, it)
@@ -43,13 +43,16 @@ object Kotmi {
 
     /** * Update version. If update result is 0 then insert. */
     private fun updateOrInsert(moduleID: ModuleID, migration: Migration) {
-        val updateCount = Versions.update({
-            Versions.id.eq(moduleID)
-        }) {
-            it[version] = migration.version
-            it[updatedAt] = DateTime.now()
+        fun update(moduleID: ModuleID, migration: Migration): Boolean {
+            return Versions.update({
+                Versions.id.eq(moduleID)
+            }) {
+                it[version] = migration.version
+                it[updatedAt] = DateTime.now()
+            } == 1
         }
-        if (updateCount==0) {
+
+        fun insert(moduleID: ModuleID, migration: Migration)  {
             Versions.insert {
                 it[id] = EntityID(moduleID, Versions)
                 it[version] = migration.version
@@ -57,12 +60,13 @@ object Kotmi {
                 it[updatedAt] = DateTime.now()
             }
         }
+        if (update(moduleID, migration)) else insert(moduleID, migration)
     }
 
     /** Clear version information.
      * @return true: deleted, false: not deleted */
     fun clear(id: ModuleID): Boolean =
-        transactionWithLog { Versions.deleteWhere { Versions.id.eq(EntityID(id, Versions)) }} == 1
+        transactionWithLog { Versions.deleteWhere { Versions.id.eq(EntityID(id, Versions)) } } == 1
 
     data class Migration(
         val version: VersionID,
