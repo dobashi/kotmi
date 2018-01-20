@@ -62,6 +62,7 @@ Make database.json with your database configuration.
 * Configure version management table name.
 * Configure logging level.
 * Without DatabaseConfig/ConnectionPool version.
+* Test for Android(with SQLite) 
 
 ## FAQ
 
