@@ -72,11 +72,11 @@ kotomi_management_versions
 
 ### Does Kotmi support down version?
 
-No. Please make reverse migration for downgrading.
+No. Please make reverse migration for downgrading. You already know that git doesn't delete any commit on reverting.
 
 ### Does Kotmi support SQL migration?
 
-No. Kotmi support only `()->Unit` funciton. [KotminTest](https://github.com/dobashi/kotmi/blob/master/src/test/kotlin/com/lavans/kotmi/KotmiTest.kt) uses [Exposed](https://github.com/JetBrains/Exposed) to migrate Database schema.
+No. Kotmi support only `()->Unit` funciton. [KotmiTest](https://github.com/dobashi/kotmi/blob/master/src/test/kotlin/com/lavans/kotmi/KotmiTest.kt) uses [Exposed](https://github.com/JetBrains/Exposed) to migrate Database schema.
 
 
 <!--
