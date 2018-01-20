@@ -9,7 +9,7 @@ import com.lavans.kotmi.DataSource.DatabaseConfig
 import com.lavans.kotmi.Kotmi.Migration
 ...
 
-DataSource.connect(DatabaseConfig.load())
+DataSource.connect())
 // Make some migration functions with version id.
 val m1 = Migration("0.0.1", {
     SchemaUtils.create(MigrationTestTable)
