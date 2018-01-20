@@ -13,7 +13,7 @@ import org.junit.Test
 class KotmiTest {
     @Before
     fun before() {
-        DataSource.connect(DatabaseConfig.load())
+        DataSource.connect()
     }
 
     @Test

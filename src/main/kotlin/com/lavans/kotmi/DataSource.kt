@@ -14,7 +14,7 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object DataSource {
     private val log = Logger.getLogger(this)
 
-    fun connect(db: DatabaseConfig): Database {
+    fun connect(db: DatabaseConfig = DatabaseConfig.load()): Database {
         val config = HikariConfig()
         config.jdbcUrl = db.url
         config.driverClassName = db.driver
