@@ -23,14 +23,23 @@ Kotmi.migrate("module_id", m1, m2)
 // That's all ;)
 ```
 
-There is a executable sample.
-[KotmiTest.kt]()
+Executable sample.
+[KotmiTest.kt](https://github.com/dobashi/kotmi/blob/master/src/test/kotlin/com/lavans/kotmi/KotmiTest.kt)
 
 ## Prepare
 
-Add dependency to your build tool.
+This project is not deployed to maven central yet.
 
-> gradle Kotlin DSL sample
+```bash
+$ git clone https://github.com/dobashi/kotmi.git
+$ cd kotmi
+$ ./gradlew install
+```
+
+
+Add dependency to your project.
+
+gradle Kotlin DSL sample
 ```kotlin:build.gradle.kts
 dependencies {
     compile("com.lavans.kotmi:kotmi:1.0")
@@ -66,7 +75,7 @@ No. Please make reverse migration for downgrading.
 
 ### Does Kotmi support SQL migration?
 
-No. Kotmi support only `()->Unit` funciton. [KotminTest]() uses [Exposed]() to migrate Database schema.
+No. Kotmi support only `()->Unit` funciton. [KotminTest](https://github.com/dobashi/kotmi/blob/master/src/test/kotlin/com/lavans/kotmi/KotmiTest.kt) uses [Exposed](https://github.com/JetBrains/Exposed) to migrate Database schema.
 
 
 <!--
