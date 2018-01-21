@@ -1,4 +1,6 @@
-# Kotmi
++[![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](http://www.apache.org/licenses/LICENSE-2.0)
+		 
+ # Kotmi
 
 Migration tool for Kotlin.
 
@@ -84,4 +86,5 @@ No. Kotmi support only `()->Unit` funciton. [KotminTest](https://github.com/doba
 
 'Kotmi-ds' is 'Kotmi with DataSource'. This depends on 'HikariCP' and has some database configuration utilities.
 -->
+
 
