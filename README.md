@@ -5,7 +5,6 @@ Migration tool for Kotlin.
 ## Sample
 
 ```kotlin:Sample.kt
-import com.lavans.kotmi.DataSource.DatabaseConfig
 import com.lavans.kotmi.Kotmi.Migration
 ...
 
