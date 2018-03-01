@@ -10,6 +10,7 @@ import org.jetbrains.exposed.sql.statements.StatementContext
 import org.jetbrains.exposed.sql.statements.expandArgs
 import org.jetbrains.exposed.sql.transactions.TransactionManager
 import org.jetbrains.exposed.sql.transactions.transaction
+import java.sql.Statement
 
 object DataSource {
     private val log = Logger.getLogger(this)
@@ -24,6 +25,16 @@ object DataSource {
         log.info("DataSource:connect $ds")
         return Database.connect(ds)
     }
+
+    /**
+     * Create statement. You need transaction before calling this.
+     * <code>
+     *     transactionWithLog {
+     *        DataSource.statement().execute(sql)
+     *     }
+     * </code>
+     */
+    fun statement(): Statement = TransactionManager.current().connection.createStatement()
 
     data class DatabaseConfig(
         val url: String,
