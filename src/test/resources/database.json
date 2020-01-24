@@ -1,7 +1,0 @@
-// h2 memory config
-{
-  "url": "jdbc:h2:mem:regular",
-  "driver": "org.h2.Driver",
-  "user":"user",
-  "pass":"pass"
-}
