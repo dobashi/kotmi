@@ -1,6 +1,11 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.net.URI
 
+plugins {
+    maven
+    kotlin("jvm") version "1.3.61"
+}
+
 group = "com.lavans.kotmi"
 version = "1.0"
 
@@ -14,43 +19,38 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlinModule("gradle-plugin", kotlin_version))
+        classpath(kotlin("gradle-plugin", kotlin_version))
     }
 
-}
-
-apply {
-    plugin("kotlin")
-    plugin("maven")
 }
 
 val kotlin_version: String by extra
 
 repositories {
-//    mavenLocal()
+    mavenLocal()
     mavenCentral()
-    maven{
-        url = URI("https://dl.bintray.com/kotlin/exposed/")
-    }
+    maven { url = URI("https://oss.sonatype.org/content/repositories/snapshots") }
+    maven { url = URI("https://jitpack.io") }
+    maven{ url = URI("https://dl.bintray.com/kotlin/exposed/") }
 }
 
 val exposed_version = "0.9.1"
 
 dependencies {
-    compile(kotlinModule("stdlib-jdk8", kotlin_version))
-    compile(kotlinModule("reflect", kotlin_version))
-    compile("org.jetbrains.exposed:exposed:$exposed_version") {
+    implementation(kotlin("stdlib-jdk8", kotlin_version))
+    implementation(kotlin("reflect", kotlin_version))
+    implementation("org.jetbrains.exposed:exposed:$exposed_version") {
         exclude(group = "org.jetbrains.kotlin")
     }
-    compile("com.zaxxer:HikariCP:2.7.4")
-    compile("com.fasterxml.jackson.core:jackson-databind:2.9.3")
-    compile("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0") {
+    implementation("com.zaxxer:HikariCP:2.7.4")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.3")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.9.0") {
         exclude(group = "org.jetbrains.kotlin")
     }
 
-    testCompile("com.h2database:h2:1.4.196")
-    testCompile("ch.qos.logback:logback-classic:1.2.3")
-    testCompile("junit", "junit", "4.12")
+    testImplementation("com.h2database:h2:1.4.196")
+    testImplementation("ch.qos.logback:logback-classic:1.2.3")
+    testImplementation("junit", "junit", "4.12")
 }
 
 configure<JavaPluginConvention> {
